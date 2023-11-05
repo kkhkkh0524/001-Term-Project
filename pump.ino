@@ -11,8 +11,8 @@ watering_amount만큼 급수하기 위해선 펌프는 최소 (watering_amount *
 const int pump_pin = 11;
 const int pass_time = 300; // 물이 펌프로부터 출수구까지 도달하는데 걸리는 시간, 측정 후 값 수정 필요 (ms)  
 
-int watering_cycle = 12;  // (hour)
-int watering_amount = 100; // (mL)   
+int watering_cycle = 12;  // 펌프 작동 주기 (hour)
+int watering_amount = 100; // 급수량 (mL)   
 
 int pump_duration = (watering_amount * 36.1) + pass_time; // 펌프 작동 지속시간 (ms)
 unsigned long interval = watering_cycle * 3600 * 1000; // 펌프 작동 주기 (ms)
