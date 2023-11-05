@@ -8,38 +8,43 @@ watering_amount만큼 급수하기 위해선 펌프는 최소 (watering_amount *
 실제 펌프 작동 시간 = (watering_amount * 36.1) + (물의 배관 이동시간) 
 */
 
-const int Pump_Pin = 11;
+const int pump_pin = 11;
 const int pass_time = 0; // 물이 펌프로부터 출수구까지 도달하는데 걸리는 시간, 측정 후 값 수정 필요 (ms)  
 
 int watering_cycle = 12;  // (hour)
 int watering_amount = 100; // (mL)   
 
-int pump_duration = (watering_amount * 36.1) + pass_time; // 작동 시간 (ms)
+int pump_duration = (watering_amount * 36.1) + pass_time; // 펌프 작동 지속시간 (ms)
+unsigned long interval = watering_cycle * 3600 * 1000; // 펌프 작동 주기 (ms)
 
-unsigned long interval = watering_cycle * 3600 * 1000; // 작동 주기 (ms)
-unsigned long previous = 0;
+unsigned long previous = 0, pump_previous = 0;
+unsigned long current, pump_current;
 
 bool is_active = false;
 
 
-void setup(){
-    pinMode(Pump_Pin, OUTPUT);
+void setup() {
+    pinMode(pump_pin, OUTPUT);
 }
 
-// (pump_duration)ms 만큼 펌프를 작동시킨 후 is_active 를 false로 바꾼다.
-void active_pump(int pump_duration) {
+void loop() {
+    current = millis();
+    pump_current = millis();
 
-}
- 
-void loop(){
-    unsigned long current = millis();
+    if (is_active) {
+        if (pump_current - pump_previous > pump_duration) {
+            digitalWrite(pump_pin, LOW);
+            is_active = false;
+        }
+    }
     
     if (current - previous > interval) {
-       previous = current;
-
-       if (!is_active) {
-          active_pump(pump_duration);
-          is_active = true;
-       } 
+        previous = current;
+        
+        if (!is_active) {
+            pump_previous = millis();
+            digitalWrite(pump_pin, HIGH);
+            is_active = true;
+        } 
     }
 }
