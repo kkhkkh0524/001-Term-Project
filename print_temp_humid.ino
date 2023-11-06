@@ -24,7 +24,7 @@ void setup() {
 
 void loop() {
 
-	// millis() 를 이용하여 읽는 주기를 적절히 조정
+	// millis() 를 이용하여 센서로부터 값을 읽는 주기를 적절히 조정
 	temperature = dht.readTemperature();
 	humidity = dht.readHumidity();
 	
