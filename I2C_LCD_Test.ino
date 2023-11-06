@@ -14,5 +14,3 @@ void loop()
 {
   
 }
-
-출처: https://kgu0724.tistory.com/133 [병아리 개발자의 이야기:티스토리]
