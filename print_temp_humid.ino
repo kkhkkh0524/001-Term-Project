@@ -2,7 +2,6 @@
 DHT-11 센서로 읽은 값을 LCD 디스플레이에 출력하는 예제 코드입니다. 이후 main 코드와 결합 시 적절한 수정이 필요합니다.
 */
 
-
 #include <Wire.h> 
 #include "LiquidCrystal_I2C.h"
 #include "DHT.h"
