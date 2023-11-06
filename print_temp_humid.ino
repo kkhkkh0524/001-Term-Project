@@ -1,5 +1,16 @@
+/*
+DHT-11 센서로 읽은 값을 I2C LCD 디스플레이에 출력하는 예제 코드입니다.
+이후 실제 main 코드와 결합 시 적절한 수정이 필요합니다.
+*/
+
+
 #include <Wire.h> 
-#include <LiquidCrystal_I2C.h>
+#include "LiquidCrystal_I2C.h"
+#include "DHT.h"
+#define DHTTYPE DHT11
+
+const int DHT_11_pin = 2;
+DHT dht(DHT_11_pin, DHTTYPE);
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
@@ -12,6 +23,11 @@ void setup() {
 }
 
 void loop() {
+
+	// millis() 를 이용하여 읽는 주기를 적절히 조정
+	temperature = dht.readTemperature();
+	humidity = dht.readHumidity();
+	
 	lcd.setCursor(0, 0);
 	lcd.print("Temp: ");
 	lcd.print(temperature);
