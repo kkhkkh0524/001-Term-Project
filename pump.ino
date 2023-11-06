@@ -3,7 +3,7 @@
 사용자 입력 인터페이스에서 적절한 값을 얻어서 watering_cycle, watering_amount에 사용하며, 설정된 값은 임시로 지정한 값입니다.
 */
 
-const int pump_pin = 11;
+const int pump_pin = 11; // MOSFET과 연결된 디지털 핀 번호
 const int pass_time = 300; // 물이 펌프로부터 출수구까지 도달하는데 걸리는 시간, 측정 후 값 수정 필요 (ms)  
 
 int watering_cycle = 12;  // 펌프 작동 주기 (hour)
