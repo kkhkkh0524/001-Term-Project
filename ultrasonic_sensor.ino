@@ -16,5 +16,5 @@ void loop()
 {
     int distance = hc.dist(); 
     
-    delay(60);                 // we suggest to use over 60ms measurement cycle, in order to prevent trigger signal to the echo signal.
+    delay(60); // 다른 시스템 동작을 위해 이후 millis()로 변경 필요  
 }
