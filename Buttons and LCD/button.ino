@@ -17,7 +17,7 @@ const int buttons[] = {27, 29, 31, 33}; // 순서대로 1, 2, 3, 4번 버튼
 
 // default value
 int watering_cycle = 8;
-int waternig_amount = 100;
+int watering_amount = 100;
 
 int current_state[] = {HIGH, HIGH, HIGH, HIGH};
 int previous_state[] = {HIGH, HIGH, HIGH, HIGH}; 
@@ -28,28 +28,31 @@ int temp_for_amount;
 
 bool is_setting = false; // 설정 모드의 진입 여부
 
-// function prototype
-void print_setting(void);
+bool is_amount_setting = false;
+bool is_cycle_setting = false;
 
 void setup() {
   for (int i = 0; i < 4; i++) pinMode(buttons[i], INPUT_PULLUP);
 }
 
 /* 
-1번 버튼이 눌러졌는지 검사한다. 이 함수는 다른 버튼과 무관하게 상시 호출 가능
+1번 버튼이 눌러졌는지 검사한다. 이 함수는 다른 버튼의 입력과 무관하게 상시 호출 가능
 */
 
 void check_for_setting() {
-  temp_for_cycle = watering_cycle; 
-  temp_for_amount = watering_amount; 
-  
+    
   current_state[0] = digitalRead(buttons[0]);
 
   if (current_state[0] == LOW && previous_state[0] == HIGH) {
-    is_setting = true;
 
-    print_setting();
-    
+    // init bool value
+    is_setting = true;
+    is_amount_setting = true;
+    is_cycle_setting = false;
+
+    temp_for_cycle = watering_cycle; 
+    temp_for_amount = watering_amount; 
+
     previous_state[0] = current_state[0];
     delay(30);
     
@@ -58,9 +61,17 @@ void check_for_setting() {
     }
 }
 
+void setting_for_amount() {
+}
+
+void setting_for_cycle() {
+}
+
 void loop() {
   check_for_setting();
 
-  
-
+  if (is_setting) {
+    if (is_amount_setting) setting_for_amount();
+    if (is_cycle_setting) setting_for_cycle();
+  }
 }
