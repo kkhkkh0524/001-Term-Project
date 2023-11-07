@@ -7,8 +7,6 @@
 아두이노 내부 풀업 저항을 사용하여 각 디지털 핀에 버튼이 눌러졌을 때 LOW 출력이 되도록 설정 
 4번 버튼이 눌러지기 전까지 변경된 값은 실제로 적용되지 않음
 
-설정 진입 이후 2, 3번 버튼 조작 중 1번 버튼을 누를 경우 이전에 등록된 값으로 표시를 변경하며 그 전에 변경한 값은 소멸 
-
 1번 > 4번 : 급수량 변경값 저장 후 급수주기 변경 모드
 1번 > 4번 > 4번: 급수주기 변경값 저장 후 온습도 표시 (기본 모드)
 */
@@ -40,7 +38,6 @@ void setup() {
 버튼이 눌러지면 4번이 눌러지기 이전의 모든 값들은 초기화되며 바로 급수량 설정 모드로 진입
 */
 void check_for_setting() {
-    
   current_state[0] = digitalRead(buttons[0]);
 
   if (current_state[0] == LOW && previous_state[0] == HIGH) {
@@ -59,8 +56,11 @@ void check_for_setting() {
     }
 }
 
-void setting_for_amount() {
+/*
+급수량을 조절하는 모드, 2번 버튼과 3번 버튼의 입력을 같이 검사하여 임시 급수량 값을 바꾼다.
+*/
 
+void setting_for_amount() {
   for (int i = 1; i < 3; i++) { // for문을 이용하여 2번 3번 버튼의 상태를 같이 읽는다.
     current_state[i] = digitalRead(buttons[i]);
 
@@ -82,15 +82,17 @@ void setting_for_amount() {
   }
 }
 
-
 void setting_for_cycle() {
   
 }
 
 void loop() {
-  check_for_setting();
 
-  if (is_setting) {
+  // 세팅 모드가 아닐때만 세팅 버튼의 입력을 검사할 수 있도록 처리 
+  if (!is_setting) check_for_setting();
+  else {
+    
+    // 두 세팅 모드가 동시에 동작할 수 없도록 처리
     if (is_amount_setting) setting_for_amount();
     else if (is_cycle_setting) setting_for_cycle();
   }
