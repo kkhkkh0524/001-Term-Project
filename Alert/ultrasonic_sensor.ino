@@ -5,16 +5,21 @@
 
 #include "HCSR04.h"
 
+const int LED_pin = 30;
+
 const int trig_pin = 16;
 const int echo_pin = 14;
 HCSR04 hc(trig_pin, echo_pin); // initialisation class HCSR04 (trig pin , echo pin)
 
 void setup() {
+    pinMode(LED_pin, OUTPUT);
 }
 
-void loop()
-{
+void loop() {
     int distance = hc.dist(); 
     
+    if (distance > ...) digitalWrite(LED_pin, HIGH); 
+    else digitalWrite(LED_pin, LOW);
+        
     delay(60); // 다른 시스템 동작을 위해 이후 millis()로 변경 필요  
 }
