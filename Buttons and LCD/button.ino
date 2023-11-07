@@ -5,31 +5,25 @@
 4번 버튼 (D33) : Save changed value 
 
 아두이노 내부 풀업 저항을 사용하여 각 디지털 핀에 버튼이 눌러졌을 때 LOW 출력이 되도록 설정 
-4번 버튼이 눌러지기 전까지 변경된 값은 실제로 적용되지 않음
-한번 설정 모드에 진입하면면 무조건 4번 버튼을 통해서만 탈출할 수 있다.
-
-1번 > 4번 : 급수량 변경값 저장 후 급수주기 변경 모드
-1번 > 4번 > 4번: 급수주기 변경값 저장 후 온습도 표시 (기본 모드)
-
 */
 
 const int buttons[] = {27, 29, 31, 33}; // 순서대로 1, 2, 3, 4번 버튼 
 
-// default value
+// 이 전역변수의 값은 펌프 제어 함수와 공유합니다.
 int watering_cycle = 8;
 int watering_amount = 100;
 
 int current_state[] = {HIGH, HIGH, HIGH, HIGH};
 int previous_state[] = {HIGH, HIGH, HIGH, HIGH}; 
 
-// 아래 temp 값은 4번이 눌러지기 전 (최종 저장) 전에 화면에 값을 표시하기 위한 용도로 사용
+// 아래 temp 값은 4번 버튼 (저장 버튼)이 눌러지기 전에 화면에 값을 표시하기 위한 용도로 사용
 int temp_for_cycle;
 int temp_for_amount;
 
 bool is_setting = false; // 설정 모드의 진입 여부
 
-bool is_amount_setting = false;
-bool is_cycle_setting = false;
+bool is_amount_setting = false; // 급수량 설정 모드의 진입 여부
+bool is_cycle_setting = false; // 급수주기 설정 모드의 진입 여부부
 
 void setup() {
   for (int i = 0; i < 4; i++) pinMode(buttons[i], INPUT_PULLUP);
