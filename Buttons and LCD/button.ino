@@ -1,6 +1,6 @@
 /*
 1번 버튼 (D27) : Enter value-setting mode  
-2번 버튼 (D29) : change target value +1 / +10
+2번 버튼 (D29) : Change target value +1 / +10
 3번 버튼 (D31) : change target value -1 / -10
 4번 버튼 (D33) : Save changed value 
 
@@ -15,12 +15,16 @@
 
 const int buttons[] = {27, 29, 31, 33}; // 순서대로 1, 2, 3, 4번 버튼 
 
+// default value
+int watering_cycle = 8;
+int waternig_amount = 100;
+
 int current_state[] = {HIGH, HIGH, HIGH, HIGH};
 int previous_state[] = {HIGH, HIGH, HIGH, HIGH}; 
 
 // 아래 temp 값은 4번이 눌러지기 전 (최종 저장) 전에 화면에 값을 표시하기 위한 용도로 사용
-int temp_for_cycle = watering_cycle; 
-int temp_for_amount = watering_amount; 
+int temp_for_cycle;
+int temp_for_amount;
 
 bool is_setting = false; // 설정 모드의 진입 여부
 
@@ -31,8 +35,14 @@ void setup() {
   for (int i = 0; i < 4; i++) pinMode(buttons[i], INPUT_PULLUP);
 }
 
-// 1번 버튼이 눌러졌는지 검사 
+/* 
+1번 버튼이 눌러졌는지 검사한다. 이 함수는 다른 버튼과 무관하게 상시 호출 가능
+*/
+
 void check_for_setting() {
+  temp_for_cycle = watering_cycle; 
+  temp_for_amount = watering_amount; 
+  
   current_state[0] = digitalRead(buttons[0]);
 
   if (current_state[0] == LOW && previous_state[0] == HIGH) {
