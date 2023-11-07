@@ -13,8 +13,8 @@ DHT dht(DHT_11_pin, DHTTYPE);
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-int temperature;
-int humidity;
+int temperature = 0;
+int humidity = 0;
 
 unsigned long DHT_current = 0;
 unsigned long DHT_previous = 0;
