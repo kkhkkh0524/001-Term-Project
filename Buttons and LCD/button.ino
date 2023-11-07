@@ -25,7 +25,7 @@ int temp_for_amount = watering_amount;
 bool is_setting = false; // 설정 모드의 진입 여부
 
 // function prototype
-// void print_setting(void);
+void print_setting(void);
 
 void setup() {
   for (int i = 0; i < 4; i++) pinMode(buttons[i], INPUT_PULLUP);
