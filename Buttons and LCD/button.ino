@@ -23,7 +23,7 @@ int temp_for_amount;
 bool is_setting = false; // 설정 모드의 진입 여부
 
 bool is_amount_setting = false; // 급수량 설정 모드의 진입 여부
-bool is_cycle_setting = false; // 급수주기 설정 모드의 진입 여부부
+bool is_cycle_setting = false; // 급수주기 설정 모드의 진입 여부
 
 void setup() {
   for (int i = 0; i < 4; i++) pinMode(buttons[i], INPUT_PULLUP);
