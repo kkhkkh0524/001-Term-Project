@@ -16,17 +16,13 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 int temperature;
 int humidity;
 
-void setup() {
-	lcd.init();
-	lcd.backlight();
-}
+unsigned long DHT_current = 0;
+unsigned long DHT_previous = 0;
 
-void loop() {
+const int read_interval = 1 * 60 * 1000; // 1분 마다 센서의 값을 읽고 LCD 업데이트 
 
-	// millis() 를 이용하여 센서로부터 값을 읽는 주기를 적절히 조정 필요
-	temperature = dht.readTemperature();
-	humidity = dht.readHumidity();
-	
+
+void updateDisplay() {
 	lcd.setCursor(0, 0);
 	lcd.print("Temp: ");
 	lcd.print(temperature);
@@ -36,4 +32,23 @@ void loop() {
 	lcd.print("Humidity: ");
 	lcd.print(humidity);
 	lcd.print("%");
+}
+
+
+void setup() {
+	lcd.init();
+	lcd.backlight();
+	DHT_previous = millis();
+}
+
+void loop() {
+	// millis() 를 이용하여 센서로부터 값을 읽는 주기를 적절히 조정 필요
+	DHT_current = millis();
+
+	if (DHT_current - DHT_previous > read_interval) {
+		DHT_previous = DHT_current;
+		temperature = dht.readTemperature();
+		humidity = dht.readHumidity();
+		updateDisplay();
+	}
 }
