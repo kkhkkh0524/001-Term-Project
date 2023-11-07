@@ -22,7 +22,7 @@ void setup() {
     pinMode(pump_pin, OUTPUT);
 }
 
-void loop() {
+void check_for_pump() {
     current = millis();
     pump_current = millis();
 
@@ -42,4 +42,8 @@ void loop() {
             is_active = true;
         } 
     }
+}
+
+void loop() {
+    check_for_pump();
 }
