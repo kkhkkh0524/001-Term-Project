@@ -120,6 +120,8 @@ void setting_for_cycle() {
 전역변수 watering_amount 또는 watering_cycle 에 저장한다.
 */
 void check_for_save() {
+  // 이 함수는 급수량, 급수주기를 설정하는 모드일 때 계속 호출되므로 각 모드에 맞는 LCD를 출력하는 코드를 여기에 작성해도 좋다. 아래 주석처리된 코드는 이에 대한 예시 코드이다.
+  
   current_state[3] = digitalRead(buttons[3]);
 
   if (current_state[3] == LOW && previous_state[3] == HIGH) { // 버튼이 눌러지면 
@@ -129,6 +131,8 @@ void check_for_save() {
       watering_amount = temp_for_amount;
       is_amount_setting = false;
       is_cycle_setting = true;
+
+      // 급수주기 세팅 모드를 표시하는 LCD를 출력하는 코드
     }
   
     // 급수주기 세팅 모드에서 저장 버튼이 눌리면 임시값에 저장된 값을 실제값으로 바꾸고, 세팅 모드를 종료한다. 
@@ -136,6 +140,8 @@ void check_for_save() {
       watering_cycle = temp_for_cycle;
       is_cycle_setting = false;
       is_setting = false;
+
+      // 초기 화면 (온습도 표시) 을 표시하는 LCD를 출력하는 코드
     }
 
     previous_state[3] = current_state[3];
