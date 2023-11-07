@@ -9,6 +9,8 @@
 */
 
 const int buttons[] = {27, 29, 31, 33};
+bool check[] = {false, false, false, false}; 
+
 
 bool isSetting = false;
 
