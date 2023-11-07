@@ -1,7 +1,4 @@
 /*
-디지털 핀 번호 값은 임시값
-입력값 예외처리 필수 
-
 1번 버튼 (D27) : Setting 
 2번 버튼 (D29) : +1 / +10
 3번 버튼 (D31) : -1 / -10
@@ -9,8 +6,9 @@
 */
 
 const int buttons[] = {27, 29, 31, 33};
-bool check[] = {false, false, false, false}; 
 
+int buttonStates[] = {HIGH, HIGH, HIGH, HIGH};
+int lastButtonStates[] = {HIGH, HIGH, HIGH, HIGH};
 
 bool isSetting = false;
 
@@ -20,12 +18,21 @@ void setup() {
   }
 }
 
-void loop() {
+void settingCheck() {
+  buttonStates[0] = digitalRead(buttons[0]);
 
+  if (buttonStates[0] == LOW && lastButtonStates[0] == HIGH) {
+    isSetting = true;
 
-if (isSetting) {
-  // enable 2번
+    lastButtonStates[0] = buttonStates[0];
+    delay(50);
+    
+    } else if (buttonStates[0] == HIGH) {
+      lastButtonStates[0] = buttonStates[0];
+  }
 }
 
+void loop() {
+  settingCheck();
 
 }
