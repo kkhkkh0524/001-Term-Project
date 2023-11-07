@@ -6,6 +6,7 @@ Printed init screen example :
 -----------------------
 Temp : 23 C
 Humidity : 34 %
+-----------------------
 */
 
 #include <Wire.h> 
