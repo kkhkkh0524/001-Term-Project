@@ -8,6 +8,11 @@ void setup() {
   lcd.backlight();
 }
 
+Printed screen example :
+------------------
+Amount : 120 mL
+Cycle : 12 hours
+------------------
 */
 
 #include <Wire.h> 
@@ -15,17 +20,18 @@ void setup() {
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-void print_amount() {
+
+void print_setting_screen() {
   lcd.setCursor(0, 0);
-  lcd.print("Amount :");
+  lcd.print("Amount : ");
   lcd.print(temp_for_amount);
   lcd.print(" mL");
+
+  lcd.setCursor(0, 1);
+  lcd.print("Cycle : ");
+  lcd.print(temp_for_cycle);
+  lcd.print(" hours");
 }
 
-void print_amount() {
-  lcd.setCursor(0, 0);
-  lcd.print("Cycle :");
-  lcd.print(temp_for_cycle);
-  lcd.print(" hour");
-}
+
 
