@@ -124,8 +124,6 @@ void check_for_save() {
       watering_amount = temp_for_amount;
       is_amount_setting = false;
       is_cycle_setting = true;
-
-      // 급수주기 세팅 모드를 표시하는 LCD를 출력하는 코드 (check_for_save 의 첫 줄에서 LCD 출력 코드를 작성하면 이곳에 작성하지 않아도 무관하다.) 
     }
   
     // 급수주기 세팅 모드에서 저장 버튼이 눌리면 임시값에 저장된 값을 실제값으로 바꾸고, 세팅 모드를 종료한다. 
@@ -134,7 +132,7 @@ void check_for_save() {
       is_cycle_setting = false;
       is_setting = false;
 
-      // 초기 화면 (온습도 표시) 을 표시하는 LCD를 출력하는 코드 (이 코드는 무조건 작성해야 한다.)
+      // 초기 화면 (온습도 표시) 을 표시하는 LCD를 출력하는 코드, print_init_screen.ino 참조 (이 코드는 무조건 작성해야 한다.)
     }
 
     previous_state[3] = current_state[3];
