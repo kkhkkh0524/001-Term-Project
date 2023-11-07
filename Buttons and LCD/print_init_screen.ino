@@ -1,6 +1,11 @@
 /*
 DHT-11 센서로 읽은 값을 LCD 디스플레이에 출력하는 예제 코드입니다. 이후 main 코드와 결합 시 적절한 수정이 필요합니다.
 Mega 2560과 연결 시 SDA 핀은 디지털 20번, SCL 핀은 디지털 21번에 연결합니다.
+
+Printed init screen example :
+-----------------------
+Temp : 23 C
+Humidity : 34 %
 */
 
 #include <Wire.h> 
@@ -23,14 +28,14 @@ const int read_interval = 1 * 60 * 1000; // 1분 마다 센서의 값을 읽고 
 
 void print_init() {
 	lcd.setCursor(0, 0); // setCursor(a, b) : 출력문자의 시작점을 a열 b행으로 설정
-	lcd.print("Temp: ");
+	lcd.print("Temp : ");
 	lcd.print(temperature);
-	lcd.print("C");
+	lcd.print(" C");
 
 	lcd.setCursor(0, 1);
-	lcd.print("Humidity: ");
+	lcd.print("Humidity : ");
 	lcd.print(humidity);
-	lcd.print("%");
+	lcd.print(" %");
 }
 
 
