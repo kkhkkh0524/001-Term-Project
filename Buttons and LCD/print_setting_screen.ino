@@ -1,6 +1,4 @@
 /*
-각 모드에 해당하는 LCD 디스플레이를 출력하는 함수를 포함하는 파일입니다.
-
 Requirements for setup() :
 
 void setup() {
