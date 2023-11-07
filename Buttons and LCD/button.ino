@@ -37,21 +37,19 @@ void setup() {
 
 /* 
 1번 버튼이 눌러졌는지 검사한다. 이 함수는 다른 버튼의 입력과 무관하게 상시 호출 가능
+버튼이 눌러지면 4번이 눌러지기 이전의 모든 값들은 초기화되며 바로 급수량 설정 모드로 진입
 */
-
 void check_for_setting() {
     
   current_state[0] = digitalRead(buttons[0]);
 
   if (current_state[0] == LOW && previous_state[0] == HIGH) {
+    temp_for_cycle = watering_cycle; 
+    temp_for_amount = watering_amount;
 
-    // init bool value
     is_setting = true;
     is_amount_setting = true;
     is_cycle_setting = false;
-
-    temp_for_cycle = watering_cycle; 
-    temp_for_amount = watering_amount; 
 
     previous_state[0] = current_state[0];
     delay(30);
@@ -62,9 +60,11 @@ void check_for_setting() {
 }
 
 void setting_for_amount() {
+  
 }
 
 void setting_for_cycle() {
+  
 }
 
 void loop() {
