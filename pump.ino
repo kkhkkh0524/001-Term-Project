@@ -17,7 +17,6 @@ unsigned long current, pump_current;
 
 bool is_active = false;
 
-
 void setup() {
     pinMode(pump_pin, OUTPUT);
 }
@@ -26,13 +25,15 @@ void check_for_pump() {
     current = millis();
     pump_current = millis();
 
+    // 펌프가 작동될 때 작동 시간만큼 지나면 펌프를 끈다.
     if (is_active) {
         if (pump_current - pump_previous > pump_duration) {
             digitalWrite(pump_pin, LOW);
             is_active = false;
         }
     }
-    
+
+    // 작동 주기만큼 지나면 펌프를 작동시킨다.
     if (current - previous > interval) {
         previous = current;
         
