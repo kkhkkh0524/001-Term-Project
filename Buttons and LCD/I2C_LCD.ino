@@ -8,7 +8,7 @@ Mega 2560과 연결 시 SDA 핀은 디지털 20번, SCL 핀은 디지털 21번�
 #include "DHT.h"
 #define DHTTYPE DHT11
 
-const int DHT_11_pin = 2;
+const int DHT_11_pin = 2; // 온습도센서 연결 디지털 핀 번호
 DHT dht(DHT_11_pin, DHTTYPE);
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
@@ -23,7 +23,7 @@ const int read_interval = 1 * 60 * 1000; // 1분 마다 센서의 값을 읽고 
 
 
 void updateDisplay() {
-	lcd.setCursor(0, 0);
+	lcd.setCursor(0, 0); // setCursor(a, b) : 출력문자의 시작점을 0열 0행으로 설정
 	lcd.print("Temp: ");
 	lcd.print(temperature);
 	lcd.print("C");
@@ -36,19 +36,22 @@ void updateDisplay() {
 
 
 void setup() {
+	// LCD 초기화
 	lcd.init();
 	lcd.backlight();
+	
 	DHT_previous = millis();
 }
 
 void loop() {
-	// millis() 를 이용하여 센서로부터 값을 읽는 주기를 적절히 조정 필요
 	DHT_current = millis();
 
-	if (DHT_current - DHT_previous > read_interval) {
+	if (DHT_current - DHT_previous > read_interval) { // read_interval 주기로 센서 값 업데이트  
+		
 		DHT_previous = DHT_current;
 		temperature = dht.readTemperature();
 		humidity = dht.readHumidity();
+		
 		updateDisplay();
 	}
 }
