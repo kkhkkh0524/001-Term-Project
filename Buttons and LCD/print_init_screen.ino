@@ -22,7 +22,7 @@ unsigned long DHT_previous = 0;
 const int read_interval = 1 * 60 * 1000; // 1분 마다 센서의 값을 읽고 LCD 업데이트 
 
 void print_init() {
-	lcd.setCursor(0, 0); // setCursor(a, b) : 출력문자의 시작점을 0열 0행으로 설정
+	lcd.setCursor(0, 0); // setCursor(a, b) : 출력문자의 시작점을 a열 b행으로 설정
 	lcd.print("Temp: ");
 	lcd.print(temperature);
 	lcd.print("C");
