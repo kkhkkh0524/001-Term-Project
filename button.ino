@@ -1,38 +1,56 @@
 /*
-1번 버튼 (D27) : Setting 
-2번 버튼 (D29) : +1 / +10
-3번 버튼 (D31) : -1 / -10
-4번 버튼 (D33) : Save setting 
+1번 버튼 (D27) : Enter value-setting mode  
+2번 버튼 (D29) : change target value +1 / +10
+3번 버튼 (D31) : change target value -1 / -10
+4번 버튼 (D33) : Save changed value 
+
+아두이노 내부 풀업 저항을 사용하여 각 디지털 핀에 버튼이 눌러졌을 때 LOW 출력이 되도록 설정 
+4번 버튼이 눌러지기 전까지 변경된 값은 실제로 적용되지 않음
+
+설정 진입 이후 2, 3번 버튼 조작 중 1번 버튼을 누를 경우 이전에 등록된 값으로 표시를 변경하며 그 전에 변경한 값은 소멸 
+
+1번 > 4번 : 급수량 변경값 저장 후 급수주기 변경 모드
+1번 > 4번 > 4번: 급수주기 변경값 저장 후 온습도 표시 (기본 모드) 
 */
 
-const int buttons[] = {27, 29, 31, 33};
+const int buttons[] = {27, 29, 31, 33}; // 순서대로 1, 2, 3, 4번 버튼 
 
-int buttonStates[] = {HIGH, HIGH, HIGH, HIGH};
-int lastButtonStates[] = {HIGH, HIGH, HIGH, HIGH};
+int current_state[] = {HIGH, HIGH, HIGH, HIGH};
+int previous_state[] = {HIGH, HIGH, HIGH, HIGH}; 
 
-bool isSetting = false;
+// 아래 temp 값은 4번이 눌러지기 전 (최종 저장) 전에 화면에 값을 표시하기 위한 용도로 사용
+int temp_for_cycle = watering_cycle; 
+int temp_for_amount = watering_amount; 
+
+bool is_setting = false; // 설정 모드의 진입 여부
+
+// function prototype
+// void print_setting(void);
 
 void setup() {
-  for (int i = 0; i < 4; i++) {
-    pinMode(buttons[i], INPUT_PULLUP);
-  }
+  for (int i = 0; i < 4; i++) pinMode(buttons[i], INPUT_PULLUP);
 }
 
-void settingCheck() {
-  buttonStates[0] = digitalRead(buttons[0]);
+// 1번 버튼이 눌러졌는지 검사 
+void check_for_setting() {
+  current_state[0] = digitalRead(buttons[0]);
 
-  if (buttonStates[0] == LOW && lastButtonStates[0] == HIGH) {
-    isSetting = true;
+  if (current_state[0] == LOW && previous_state[0] == HIGH) {
+    is_setting = true;
 
-    lastButtonStates[0] = buttonStates[0];
-    delay(50);
+    print_setting();
     
-    } else if (buttonStates[0] == HIGH) {
-      lastButtonStates[0] = buttonStates[0];
-  }
+    previous_state[0] = current_state[0];
+    delay(30);
+    
+    } else if (current_state[0] == HIGH) { 
+      previous_state[0] = current_state[0];
+    }
 }
 
 void loop() {
-  settingCheck();
+  check_for_setting();
+
+  
 
 }
