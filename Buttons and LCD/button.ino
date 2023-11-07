@@ -60,8 +60,28 @@ void check_for_setting() {
 }
 
 void setting_for_amount() {
-  
+
+  for (int i = 1; i < 3; i++) { // for문을 이용하여 2번 3번 버튼의 상태를 같이 읽는다.
+    current_state[i] = digitalRead(buttons[i]);
+
+    if (current_state[i] == LOW && previous_state[i] == HIGH) {
+      
+      if (i == 1) { // 2번 버튼 (값 증가) 
+        temp_for_amount += 20;
+        
+      } else if (i == 2) { // 3번 버튼 (값 감소)
+        if (temp_for_amount - 20 >= 0) temp_for_amount -= 20; // 값이 음수로 갈 수 없도록 예외처리
+      }
+
+      previous_state[i] = current_state[i];
+      delay(30);
+      
+    } else if (current_state[i] == HIGH) {
+      previous_state[i] = current_state[i];
+    }  
+  }
 }
+
 
 void setting_for_cycle() {
   
