@@ -120,7 +120,7 @@ void setting_for_cycle() {
 */
 void check_for_save() {
   // 이 함수는 급수량, 급수주기를 설정하는 모드일 때 계속 호출되므로 각 모드에 맞는 LCD를 출력하는 코드를 여기에 작성해도 좋다. 아래 주석처리된 코드는 이에 대한 예시 코드이다.
-  // printLCD.ino 파일의 print
+  // printLCD.ino 파일의 print_setting_screen()를 이 줄에서 호출하면 된다.
   
   current_state[3] = digitalRead(buttons[3]);
 
