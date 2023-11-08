@@ -1,15 +1,16 @@
-#include <Wire.h> 
-#include <LiquidCrystal_I2C.h>
-#include <DHT.h>
+#include <Wire.h> // I2C 통신을 위한 라이브러리
+#include <LiquidCrystal_I2C.h> // LCD 출력을 위한 라이브러리
+#include <DHT.h> // 온습도 센서를 위한 라이브러리
 
-#include <button_variables.h>
-#include <print_init_screen.h>
-#include <print_setting_screen.h>
+#include <button_variables.h> // 버튼 입력과 관련된 변수
+#include <print_init_screen.h> // 온습도 값 출력을 위한 함수 
+#include <print_setting_screen.h> // 세팅화면 출력을 위한 함수 
+
 
 DHT dht(DHT_11_pin, DHT11); // 온습도 센서 객체 정의
 LiquidCrystal_I2C lcd(0x27, 16, 2); // LCD 객체 정의 
 
-// 이 전역변수의 값은 펌프 제어 함수와 공유합니다.
+// 이 전역변수의 값은 펌프 제어 함수와 공유되어야 합니다.
 int watering_cycle = 8;
 int watering_amount = 100;
 
@@ -23,16 +24,16 @@ void setup() {
 
   // 최초 실행시 온습도를 읽고 초기화면에 출력
   temperature = dht.readTemperature();
-	humidity = dht.readHumidity();
+  humidity = dht.readHumidity();
   print_init();
   
   DHT_previous = millis();
 }
 
-/* 
-1번 버튼이 눌러졌는지 검사한다. 이 함수는 기본 모드(온습도 표시 화면)일 때만 호출한다. 세팅 모드로 진입하면 이 함수는 호출되지 않는다.)
-*/
+
+// 1번 버튼이 눌러졌는지 검사한다. 이 함수는 기본 모드(온습도 표시 화면)일 때만 호출한다. 세팅 모드로 진입하면 이 함수는 호출되지 않는다.)
 void check_for_setting() {
+	
   current_state[0] = digitalRead(buttons[0]);
 
   if (current_state[0] == LOW && previous_state[0] == HIGH) { // 버튼이 눌러지면
@@ -52,9 +53,8 @@ void check_for_setting() {
     }
 }
 
-/*
-급수량을 조절하는 모드, 2번 버튼과 3번 버튼의 입력을 같이 검사하여 임시 급수량 값을 바꾼다.
-*/
+
+// 급수량을 조절하는 모드, 2번 버튼과 3번 버튼의 입력을 같이 검사하여 임시 급수량 값을 바꾼다.
 void setting_for_amount() {
 
   check_for_save(); // 세팅 모드에서 저장 버튼이 눌려졌는지는 항상 검사해야한다. 
@@ -80,9 +80,8 @@ void setting_for_amount() {
   }
 }
 
-/*
-급수 주기를 조절하는 모드, 2번 버튼과 3번 버튼의 입력을 같이 검사하여 임시 급수주기 값을 바꾼다.
-*/
+
+// 급수 주기를 조절하는 모드, 2번 버튼과 3번 버튼의 입력을 같이 검사하여 임시 급수주기 값을 바꾼다.
 void setting_for_cycle() {
 
   check_for_save(); // 세팅 모드에서 저장 버튼이 눌려졌는지는 항상 검사해야한다. 
@@ -108,24 +107,24 @@ void setting_for_cycle() {
   }
 }
 
-/*
-4번 버튼 (저장 버튼)이 눌러졌는지 검사한다. 버튼이 눌러지면 전역변수 temp_for_amount 또는 temp_for_cycle 에 저장된 값을 실제 동작에 관여하는
-전역변수 watering_amount 또는 watering_cycle 에 저장한다.
-*/
+
+// 4번 버튼 (저장 버튼)이 눌러졌는지 검사한다. 버튼이 눌러지면 전역변수 temp_for_amount 또는 temp_for_cycle 에 저장된 값을 실제 동작에 관여하는 전역변수 watering_amount 또는 watering_cycle 에 저장한다.
 void check_for_save() {
-	print_setting_screen();
+	print_setting_screen(); // check_for_save 는 세팅 과정에서 항상 호출되므로 실시간으로 현재 설정된 값을 볼 수 있도록 LCD를 출력한다. 
 	
   current_state[3] = digitalRead(buttons[3]);
-
+	
   if (current_state[3] == LOW && previous_state[3] == HIGH) { // 버튼이 눌러지면 
 
-    // 급수량 세팅 모드에서 저장 버튼이 눌리면 임시값에 저장된 값을 실제값으로 바꾸고, 급수주기 세팅 모드로 들어간다.    
+		
+    // 급수량 세팅 모드에서 저장 버튼이 놀리면 임시값에 저장된 값을 실제값으로 바꾸고, 급수주기 세팅 모드로 들어간다.    
     if (is_amount_setting) {
       watering_amount = temp_for_amount;
       is_amount_setting = false;
       is_cycle_setting = true;
     }
-  
+
+		
     // 급수주기 세팅 모드에서 저장 버튼이 눌리면 임시값에 저장된 값을 실제값으로 바꾸고, 세팅 모드를 종료한다. 
     if (is_cycle_setting) {
       watering_cycle = temp_for_cycle;
@@ -145,10 +144,9 @@ void check_for_save() {
 
 void loop() {
 
-  // 세팅 모드가 아닐 때만 세팅 버튼의 입력을 검사할 수 있도록 처리 (급수량 또는 급수주기를 설정하고 있을 때는 설정 버튼이 비활성화된다.) 
+  // 세팅 모드가 아닐 때만 세팅 버튼의 입력을 검사할 수 있도록 처리 (급수량 또는 급수주기를 설정하고 있을 때는 설정 버튼으로 상호작용 불가) 
   if (!is_setting) check_for_setting();
   else {
-    
     // 두 세팅 모드가 동시에 동작할 수 없도록 처리
     if (is_amount_setting) setting_for_amount();
     else if (is_cycle_setting) setting_for_cycle();
