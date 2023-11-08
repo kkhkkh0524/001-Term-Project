@@ -2,7 +2,8 @@
 #include <LiquidCrystal_I2C.h> // LCD 출력을 위한 라이브러리
 #include <DHT.h> // 온습도 센서를 위한 라이브러리
 
-// 아래 전처리기의 순서는 불변합니다.
+// 아래 전처리기의 순서는 바꿀 수 없습니다. (오브젝트 중복선언 방지)
+
 #include <button_variables.h> // 버튼 입력과 관련된 변수
 #include <print_init_screen.h> // 온습도 값 출력을 위한 함수 
 #include <print_setting_screen.h> // 세팅화면 출력을 위한 함수  
