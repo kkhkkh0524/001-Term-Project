@@ -26,7 +26,7 @@ void setup() {
   lcd.init();
   lcd.backlight();
 
-  // 최초 실행시 온습도를 읽고 초기화면에 출력
+  // 최초 실행시에 기본화면 (온습도 표시)를 표시하기 위해 온습도를 읽고 초기화면 출력 함수를 호출
   temperature = dht.readTemperature();
   humidity = dht.readHumidity();
   print_init();
