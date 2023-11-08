@@ -110,7 +110,7 @@ void setting_for_cycle() {
 
 // 4번 버튼 (저장 버튼)이 눌러졌는지 검사한다. 버튼이 눌러지면 전역변수 temp_for_amount 또는 temp_for_cycle 에 저장된 값을 실제 동작에 관여하는 전역변수 watering_amount 또는 watering_cycle 에 저장한다.
 void check_for_save() {
-	print_setting_screen(); // check_for_save 는 세팅 과정에서 항상 호출되므로 실시간으로 현재 설정된 값을 볼 수 있도록 LCD를 출력한다. 
+	print_setting(); // check_for_save 는 세팅 과정에서 항상 호출되므로 실시간으로 현재 설정된 값을 볼 수 있도록 LCD를 출력한다. 
 	
   current_state[3] = digitalRead(buttons[3]);
 	
