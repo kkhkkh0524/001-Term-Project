@@ -1,6 +1,6 @@
 # 001-4 Term Project
 
-<a href="https://wokwi.com/projects/380797794011451393"메인 회로도 (전체 회로도)</a>
+<a href="https://wokwi.com/projects/380797794011451393">메인 회로도 (전체 회로도)</a>
 
 <a href="https://wokwi.com/projects/380560494245864449">워터펌프 + 모스펫 모듈 회로도</a>
 
