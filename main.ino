@@ -53,4 +53,7 @@ void loop() {
 
 	// 펌프의 작동 이후 시간을 계산하여 주기에 맞게 펌프를 작동시키는 함수 
 	check_for_pump();
+	
+	// 물의 수위를 측정하는 함수 
+	calculate_level();
 }
