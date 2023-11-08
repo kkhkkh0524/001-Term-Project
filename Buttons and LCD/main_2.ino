@@ -65,7 +65,7 @@ void setting_for_amount() {
         temp_for_amount += 20;
         
       } else if (i == 2) { // 3번 버튼 (값 감소)
-        if (temp_for_amount - 20 >= 0) temp_for_amount -= 20; // 값이 음수로 갈 수 없도록 예외처리
+        if (temp_for_amount - 20 >= 0) temp_for_amount -= 20; // 예외처리
       }
 
       previous_state[i] = current_state[i];
@@ -91,7 +91,7 @@ void setting_for_cycle() {
         temp_for_cycle += 1;
         
       } else if (i == 2) { // 3번 버튼 (값 감소)
-        if (temp_for_cycle - 1 >= 1) temp_for_cycle -= 1; // 값이 음수로 갈 수 없도록 예외처리
+        if (temp_for_cycle - 1 >= 1) temp_for_cycle -= 1; // 예외처리
       }
 
       previous_state[i] = current_state[i];
