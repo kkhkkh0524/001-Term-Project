@@ -17,6 +17,8 @@ Cycle : 12 hours
 ------------------
 */
 
+LiquidCrystal_I2C lcd(0x27, 16, 2); // LCD 객체 정의 
+
 void print_setting() {
   lcd.setCursor(0, 0);
   lcd.print("Amount : ");
