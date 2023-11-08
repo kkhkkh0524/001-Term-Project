@@ -37,15 +37,16 @@ void print_init() {
 }
 
 
-void setup() {
-	// LCD 초기화
-	lcd.init();
-	lcd.backlight();
+// void setup() {
+// 	// LCD 초기화
+// 	lcd.init();
+// 	lcd.backlight();
 	
-	DHT_previous = millis();
-}
+// 	DHT_previous = millis();
+// }
 
-void loop() {
+
+void read_DHT() {
 	DHT_current = millis();
 
 	if (DHT_current - DHT_previous > read_interval) { // read_interval 주기로 센서 값 업데이트  
