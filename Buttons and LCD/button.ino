@@ -133,7 +133,7 @@ void check_for_save() {
       is_setting = false;
 
       // 초기 화면 (온습도 표시) 을 표시하는 LCD를 출력하는 코드, print_init_screen.ino 참조 (이 코드는 무조건 작성해야 한다.)
-      print_init_screen();
+      // print_init_screen();
     }
 
     previous_state[3] = current_state[3];
