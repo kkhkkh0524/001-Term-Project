@@ -9,7 +9,7 @@
 #include <print_setting_screen.h> // 세팅화면 출력을 위한 함수  
 
 
-// 이 전역변수의 값은 펌프 제어 함수와 공유되어야 합니다.
+// 아래 두 변수는 컴파일 시 최초로 초기화되는 값이며 별도의 값 세팅이 없을 경우 이 값을 기본값으로 사용하여 펌프가 작동됩니다.
 int watering_cycle = 8;
 int watering_amount = 100;
 
