@@ -1,4 +1,7 @@
 #include "button_variables.h"
+#include <Wire.h> 
+#include "LiquidCrystal_I2C.h"
+#include "DHT.h"
 
 
 // 이 전역변수의 값은 펌프 제어 함수와 공유합니다.
