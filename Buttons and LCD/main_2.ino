@@ -113,8 +113,8 @@ void setting_for_cycle() {
 전역변수 watering_amount 또는 watering_cycle 에 저장한다.
 */
 void check_for_save() {
-  // print_setting_screen.ino 파일의 print_setting_screen()를 이 줄에서 호출하면 된다.
-  
+	print_setting_screen();
+	
   current_state[3] = digitalRead(buttons[3]);
 
   if (current_state[3] == LOW && previous_state[3] == HIGH) { // 버튼이 눌러지면 
@@ -132,8 +132,7 @@ void check_for_save() {
       is_cycle_setting = false;
       is_setting = false;
 
-      // 초기 화면 (온습도 표시) 을 표시하는 LCD를 출력하는 코드, print_init_screen.ino 참조 (이 코드는 무조건 작성해야 한다.)
-      // print_init_screen();
+      print_init_screen();
     }
 
     previous_state[3] = current_state[3];
