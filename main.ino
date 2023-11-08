@@ -28,7 +28,8 @@ void setup() {
   temperature = dht.readTemperature();
   humidity = dht.readHumidity();
   print_init();
-  
+
+	// 온습도 센서 읽기 주기를 계산하기 위한 값 
   DHT_previous = millis();
 
   // 펌프를 제어할 핀 설정
@@ -153,4 +154,7 @@ void loop() {
     if (is_amount_setting) setting_for_amount();
     else if (is_cycle_setting) setting_for_cycle();
   }
+
+	// 펌프의 작동 이후 시간을 계산하여 주기에 맞게 펌프를 작동시키는 함수 
+	check_for_pump();
 }
