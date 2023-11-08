@@ -1,7 +1,6 @@
 + alert_variables.h
   + 물 보충 필요 시 알림을 출력하는 함수에 쓰이는 변수들입니다.
-  + "alert.h"
- 
+
 <br>
 
 + button_variables.h
