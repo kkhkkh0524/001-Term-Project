@@ -29,9 +29,6 @@ void setup() {
   humidity = dht.readHumidity();
   print_init();
 
-	// 온습도 센서 읽기 주기를 계산하기 위한 값 
-  DHT_previous = millis();
-
   // 펌프를 제어할 핀 설정
   pinMode(pump_pin, OUTPUT);
 }
