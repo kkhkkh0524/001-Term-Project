@@ -1,7 +1,7 @@
 /*
 Mega 2560과 연결 시 SDA 핀은 디지털 20번, SCL 핀은 디지털 21번에 연결합니다.
 
-Printed init screen example :
+Printed screen example :
 -----------------------
 Temp : 23 C
 Humidity : 34 %
