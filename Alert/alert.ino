@@ -1,4 +1,5 @@
 /*
+이 작업은 우선순위가 가장 낮으므로 main 아무 곳에서 호출해도 무관하다.
 Requirements for setup() :
 
 void setup() {
