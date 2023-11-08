@@ -10,6 +10,7 @@
 #include <print_init_screen.h> 	  // 온습도 값 출력을 위한 함수 
 #include <print_setting_screen.h> // 세팅화면 출력을 위한 함수  
 
+#include <alert.h>                // 물 보충 알림을 위한 함수 
 #include <pump.h>                 // 펌프 작동을 위한 함수 
 #include <check_function.h>       // 버튼 입력 확인을 위한 함수
 #include <setting_function.h>     // 세팅값 입력을 위한 함수 
