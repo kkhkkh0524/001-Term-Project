@@ -6,6 +6,9 @@
 #include <print_init_screen.h>
 #include <print_setting_screen.h>
 
+DHT dht(DHT_11_pin, DHTTYPE); // 온습도 센서
+LiquidCrystal_I2C lcd(0x27, 16, 2); // LCD
+
 // 이 전역변수의 값은 펌프 제어 함수와 공유합니다.
 int watering_cycle = 8;
 int watering_amount = 100;
