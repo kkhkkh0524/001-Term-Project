@@ -9,8 +9,6 @@ Humidity : 34 %
 -----------------------
 */
 
-#define DHTTYPE DHT11
-
 const int DHT_11_pin = 2; // 온습도센서가 연결된 디지털 핀 번호
 
 int temperature = 0;
@@ -21,6 +19,7 @@ unsigned long DHT_previous = 0;
 
 const int read_interval = 1 * 60 * 1000; // 1분 마다 센서의 값을 읽고 LCD 업데이트 
 
+// 온도와 습도를 저장된 변수에서 불러와 LCD에 표시하는 함수
 void print_init() {
 	lcd.setCursor(0, 0); // setCursor(a, b) : 출력문자의 시작점을 a열 b행으로 설정
 	lcd.print("Temp : ");
@@ -33,16 +32,7 @@ void print_init() {
 	lcd.print(" %");
 }
 
-
-// void setup() {
-// 	// LCD 초기화
-// 	lcd.init();
-// 	lcd.backlight();
-	
-// 	DHT_previous = millis();
-// }
-
-
+// 설정한 주기에 따라서 센서에서 값을 읽고 변수에 저장만 하는 함수 
 void read_DHT() {
 	DHT_current = millis();
 
@@ -51,7 +41,5 @@ void read_DHT() {
 		DHT_previous = DHT_current;
 		temperature = dht.readTemperature();
 		humidity = dht.readHumidity();
-		
-		print_init();
 	}
 }
