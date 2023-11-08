@@ -6,7 +6,7 @@
 #include <print_init_screen.h>
 #include <print_setting_screen.h>
 
-DHT dht(DHT_11_pin, DHTTYPE); // 온습도 센서
+DHT dht(DHT_11_pin, DHT11); // 온습도 센서
 LiquidCrystal_I2C lcd(0x27, 16, 2); // LCD
 
 // 이 전역변수의 값은 펌프 제어 함수와 공유합니다.
@@ -14,9 +14,17 @@ int watering_cycle = 8;
 int watering_amount = 100;
 
 void setup() {
+  // 버튼과 연결되는 핀을 내장 풀업 저항을 사용하도록 설정  
   for (int i = 0; i < 4; i++) pinMode(buttons[i], INPUT_PULLUP);
+
+  // LCD 초기화
   lcd.init();
   lcd.backlight();
+
+  // 최초 실행시 온습도를 읽고 초기화면에 출력
+  temperature = dht.readTemperature();
+	humidity = dht.readHumidity();
+  print_init();
   
   DHT_previous = millis();
 }
