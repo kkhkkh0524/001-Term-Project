@@ -10,6 +10,8 @@ int watering_amount = 100;
 
 void setup() {
   for (int i = 0; i < 4; i++) pinMode(buttons[i], INPUT_PULLUP);
+  lcd.init();
+  lcd.backlight();
 }
 
 /* 
