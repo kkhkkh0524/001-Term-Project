@@ -1,6 +1,5 @@
 // 하나의 마이크로컨트롤러로 모든 시스템을 제어한다고 가정할 때 사용할 스케치입니다.
 
-#include <HCSR04.h>							 // 초음파 센서를 위한 라이브러리 
 #include <Wire.h>                // I2C 통신을 위한 라이브러리
 #include <LiquidCrystal_I2C.h> 	 // LCD 출력을 위한 라이브러리
 #include <DHT.h>                 // 온습도 센서를 위한 라이브러리
