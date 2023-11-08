@@ -1,6 +1,6 @@
 #include <Wire.h> // I2C 통신을 위한 라이브러리
 #include <LiquidCrystal_I2C.h> // LCD 출력을 위한 라이브러리
-#include <DHT11.h> // 온습도 센서를 위한 라이브러리
+#include <DHT.h> // 온습도 센서를 위한 라이브러리
 
 #include <button_variables.h> // 버튼 입력과 관련된 변수
 #include <print_init_screen.h> // 온습도 값 출력을 위한 함수 
