@@ -17,7 +17,7 @@ Cycle : 12 hours
 ------------------
 */
 
-void print_setting_screen() {
+void print_setting() {
   lcd.setCursor(0, 0);
   lcd.print("Amount : ");
   lcd.print(temp_for_amount);
