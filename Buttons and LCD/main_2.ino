@@ -131,7 +131,7 @@ void check_for_save() {
       is_cycle_setting = false;
       is_setting = false;
 
-      print_init_screen();
+      print_init();
     }
 
     previous_state[3] = current_state[3];
