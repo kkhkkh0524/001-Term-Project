@@ -1,8 +1,10 @@
-#include <button_variables.h>
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
 #include <DHT.h>
 
+#include <button_variables.h>
+#include <print_init_screen.h>
+#include <print_setting_screen.h>
 
 // 이 전역변수의 값은 펌프 제어 함수와 공유합니다.
 int watering_cycle = 8;
@@ -12,6 +14,8 @@ void setup() {
   for (int i = 0; i < 4; i++) pinMode(buttons[i], INPUT_PULLUP);
   lcd.init();
   lcd.backlight();
+  
+  DHT_previous = millis();
 }
 
 /* 
