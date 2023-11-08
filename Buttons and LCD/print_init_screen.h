@@ -9,9 +9,6 @@ Humidity : 34 %
 -----------------------
 */
 
-#include <Wire.h> 
-#include "LiquidCrystal_I2C.h"
-#include "DHT.h"
 #define DHTTYPE DHT11
 
 const int DHT_11_pin = 2; // 온습도센서가 연결된 디지털 핀 번호
