@@ -15,11 +15,6 @@
 #include <check_function.h>       // 버튼 입력 확인을 위한 함수
 #include <setting_function.h>     // 세팅값 입력을 위한 함수 
 
-
-// 아래 두 변수는 컴파일 시 최초로 초기화되는 값이며 별도의 값 세팅이 없을 경우 이 값을 기본값으로 사용하여 펌프가 작동됩니다.
-int watering_cycle = 8;
-int watering_amount = 100;
-
 void setup() {
   // 버튼과 연결되는 핀을 내장 풀업 저항을 사용하도록 설정  
   for (int i = 0; i < 4; i++) pinMode(buttons[i], INPUT_PULLUP);
