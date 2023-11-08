@@ -1,10 +1,10 @@
 /*
-하나 마이크로컨트롤러로 모든 시스템을 제어한다고 가정할 때 사용할 스케치입니다.
+하나의 마이크로컨트롤러로 모든 시스템을 제어한다고 가정할 때 사용할 스케치입니다.
 */
 
-#include <Wire.h>		             // I2C 통신을 위한 라이브러리
+#include <Wire.h>		 // I2C 통신을 위한 라이브러리
 #include <LiquidCrystal_I2C.h> 	 // LCD 출력을 위한 라이브러리
-#include <DHT.h> 		             // 온습도 센서를 위한 라이브러리
+#include <DHT.h> 		 // 온습도 센서를 위한 라이브러리
 
 // 아래 3개의 전처리기는 ordered 입니다. (센서 및 LCD 오브젝트 중복선언 방지)
 #include <button_variables.h> 	  // 버튼 입력과 관련된 변수
