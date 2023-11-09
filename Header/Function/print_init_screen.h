@@ -8,7 +8,7 @@ Humidity : 34 %
 -----------------------
 */
 
-#include <DHT_variable.h>
+#include <DHT_variables.h>
 
 DHT dht(DHT_11_pin, DHT11); // 온습도 센서 객체 정의
 LiquidCrystal_I2C lcd(0x27, 16, 2); // LCD 객체 정의 
