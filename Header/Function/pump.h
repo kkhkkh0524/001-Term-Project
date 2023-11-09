@@ -8,7 +8,8 @@ void setup() {
 
 #include <pump_variables.h> // 펌프 작동 관련 변수 
 
-void check_for_pump() { // 이 함수는 main에서 항상 호출이 되어야한다.
+// 설정한 주기에 맞춰서 펌프를 동작시키는 함수. 이 함수는 main loop()에서 항상 호출되어야한다.
+void check_for_pump() { 
     current = millis();
     pump_current = millis();
 
