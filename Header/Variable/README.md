@@ -10,3 +10,9 @@
 
 + pump_variables.h
   + "pump.h" 에서 사용할 변수들입니다.
+
+
+<br>
+
++ DHT_variables.h
+  + "print_init_screen.h" 에서 사용할 변수들입니다.
