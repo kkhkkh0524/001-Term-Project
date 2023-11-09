@@ -39,7 +39,10 @@ void setup() {
 void loop() {
 
   // 세팅 모드가 아닐 때만 세팅 버튼의 입력을 검사할 수 있도록 처리 (급수량 또는 급수주기를 설정하고 있을 때는 설정 버튼으로 상호작용 불가) 
-  if (!is_setting) check_for_setting();
+  if (!is_setting) {
+	  check_for_setting();
+		read_DHT(); // 세팅 모드가 아닐 때만 설정한 주기에 따라서 온습도 센서에서 값을 읽는다.
+  }
   else {
     // 두 세팅 모드가 동시에 동작할 수 없도록 처리
     if (is_amount_setting) setting_for_amount();
