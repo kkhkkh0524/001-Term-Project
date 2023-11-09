@@ -17,7 +17,7 @@ void calculate_level() {
     if (hr_current - hr_previous > hr_interval) {
         hr_previous = hr_current;
 
-        int distance = hc.dist(); 
+        distance = hc.dist(); 
 
         // 지정한 수위보다 더 낮으면 물보충이 필요함을 알린다.
         if (distance > crit_level) digitalWrite(LED_pin, HIGH); 
