@@ -1,6 +1,5 @@
 // 1번 버튼이 눌러졌는지 검사한다. 이 함수는 기본 모드(온습도 표시 화면)일 때만 호출한다. 세팅 모드로 진입하면 이 함수는 호출되지 않는다.)
 void check_for_setting() {
-
   current_state[0] = digitalRead(buttons[0]);
 
   if (current_state[0] == LOW && previous_state[0] == HIGH) { // 버튼이 눌러지면
@@ -28,7 +27,6 @@ void check_for_save() {
   current_state[3] = digitalRead(buttons[3]);
 	
   if (current_state[3] == LOW && previous_state[3] == HIGH) { // 버튼이 눌러지면 
-
 		
     // 급수량 세팅 모드에서 저장 버튼이 놀리면 임시값에 저장된 값을 실제값으로 바꾸고, 급수주기 세팅 모드로 들어간다.    
     if (is_amount_setting) {
@@ -36,10 +34,9 @@ void check_for_save() {
       is_amount_setting = false;
       is_cycle_setting = true;
     }
-
-		
+	
     // 급수주기 세팅 모드에서 저장 버튼이 눌리면 임시값에 저장된 값을 실제값으로 바꾸고, 세팅 모드를 종료한다. 
-    if (is_cycle_setting) {
+    else if (is_cycle_setting) {
       watering_cycle = temp_for_cycle;
       is_cycle_setting = false;
       is_setting = false;
