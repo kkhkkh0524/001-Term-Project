@@ -28,30 +28,25 @@ void setup() {
   humidity = dht.readHumidity();
   print_init();
 
-  // 펌프를 제어할 핀 설정
+  // 펌프와 LED를 제어할 핀 선택 
   pinMode(pump_pin, OUTPUT);
-
-	// LED와 연결할 핀 설정 
 	pinMode(LED_pin, OUTPUT);
 }
 
 
 void loop() {
-
-  // 세팅 모드가 아닐 때만 세팅 버튼의 입력을 검사할 수 있도록 처리 (급수량 또는 급수주기를 설정하고 있을 때는 설정 버튼으로 상호작용 불가) 
+  // 세팅 모드가 아닐 때만 세팅 버튼의 입력을 검사할 수 있도록 처리 (급수량 또는 급수주기를 설정하고 있을 때는 1번 버튼으로 상호작용 불가) 
   if (!is_setting) {
 	  check_for_setting();
-		read_DHT(); // 세팅 모드가 아닐 때만 설정한 주기에 따라서 온습도 센서에서 값을 읽는다.
+
+		// 세팅 모드가 아닐 때만 주기를 갖고 동작하는 부품들을 제어하는 함수를 호출한다.
+		read_DHT(); // 온습도 측정
+	  check_for_pump(); // 펌프 동작
+	  calculate_level(); // 물탱크 수위 측정 
   }
   else {
     // 두 세팅 모드가 동시에 동작할 수 없도록 처리
     if (is_amount_setting) setting_for_amount();
     else if (is_cycle_setting) setting_for_cycle();
   }
-
-	// 펌프의 작동 이후 시간을 계산하여 주기에 맞게 펌프를 작동시키는 함수 
-	check_for_pump();
-	
-	// 물의 수위를 측정하는 함수 
-	calculate_level();
 }
