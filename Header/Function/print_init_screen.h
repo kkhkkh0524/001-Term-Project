@@ -8,18 +8,10 @@ Humidity : 34 %
 -----------------------
 */
 
-const int DHT_11_pin = 2; // 온습도센서가 연결된 디지털 핀 번호
+#include <DHT_variable.h>
 
 DHT dht(DHT_11_pin, DHT11); // 온습도 센서 객체 정의
 LiquidCrystal_I2C lcd(0x27, 16, 2); // LCD 객체 정의 
-
-int temperature = 0;
-int humidity = 0;
-
-unsigned long DHT_current = 0;
-unsigned long DHT_previous = 0;
-
-const int read_interval = 1 * 60 * 1000; // 1분 마다 센서의 값을 읽고 LCD 업데이트 
 
 // 온도와 습도를 저장된 변수에서 불러와 LCD에 표시하는 함수
 void print_init() {
