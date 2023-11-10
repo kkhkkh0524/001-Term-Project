@@ -24,17 +24,21 @@ void setup() {
   lcd.init();
   lcd.backlight();
 
-  // 최초 실행시에 기본화면 (온습도 표시)를 표시하기 위해 온습도를 읽고 초기화면 출력 함수를 호출
+  // 최초 실행시에 초기 화면을 출력
   temperature = dht.readTemperature();
   humidity = dht.readHumidity();
   print_init();
 }
 
 void loop() {
+	
+	// 현재 설정 모드일 때 
   if (is_setting) {
 		if (is_amount_setting) setting_for_amount();
   	else if (is_cycle_setting) setting_for_cycle();
 	}	
+		
+	// 현재 설정 모드가 아닐 때 
   else {
 	  check_for_setting(); // 설정 버튼 눌렸는지 검사
 		read_DHT(); // 온습도 측정 후 출력까지
