@@ -16,9 +16,10 @@
 #include <setting_function.h>     // 세팅값 입력을 위한 함수 
 
 void setup() {
-  // 버튼과 연결되는 핀을 내장 풀업 저항을 사용하도록 설정  
-  for (int i = 0; i < 4; i++) pinMode(buttons[i], INPUT_PULLUP);
-
+  for (int i = 0; i < 4; i++) pinMode(buttons[i], INPUT_PULLUP); // 버튼 
+  pinMode(pump_pin, OUTPUT); // 펌프 
+	pinMode(LED_pin, OUTPUT); // LED
+	
   // LCD 초기화
   lcd.init();
   lcd.backlight();
@@ -28,9 +29,7 @@ void setup() {
   humidity = dht.readHumidity();
   print_init();
 
-  // 펌프와 LED를 제어할 핀 선택 
-  pinMode(pump_pin, OUTPUT);
-	pinMode(LED_pin, OUTPUT);
+
 }
 
 void loop() {
