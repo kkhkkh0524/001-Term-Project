@@ -33,20 +33,15 @@ void setup() {
 	pinMode(LED_pin, OUTPUT);
 }
 
-
 void loop() {
-  // 세팅 모드가 아닐 때만 세팅 버튼의 입력을 검사할 수 있도록 처리 (급수량 또는 급수주기를 설정하고 있을 때는 1번 버튼으로 상호작용 불가) 
-  if (!is_setting) {
-	  check_for_setting();
-
-		// 세팅 모드가 아닐 때만 주기를 갖고 동작하는 부품들을 제어하는 함수를 호출한다.
-		read_DHT(); // 온습도 측정
-	  check_for_pump(); // 펌프 동작
-	  calculate_level(); // 물탱크 수위 측정 
-  }
+  if (is_setting) {
+		if (is_amount_setting) setting_for_amount();
+  	else if (is_cycle_setting) setting_for_cycle();
+	}	
   else {
-    // 두 세팅 모드가 동시에 동작할 수 없도록 처리
-    if (is_amount_setting) setting_for_amount();
-    else if (is_cycle_setting) setting_for_cycle();
+	  check_for_setting(); // 설정 버튼 눌렸는지 검사
+		read_DHT(); // 온습도 측정 후 출력까지
+	  check_for_pump(); // 펌프 동작
+	  calculate_level(); // 물탱크 수위 측정 후 알림까지  
   }
 }
