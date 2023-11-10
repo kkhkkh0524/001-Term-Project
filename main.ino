@@ -28,8 +28,6 @@ void setup() {
   temperature = dht.readTemperature();
   humidity = dht.readHumidity();
   print_init();
-
-
 }
 
 void loop() {
