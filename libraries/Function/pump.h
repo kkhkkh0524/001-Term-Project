@@ -1,6 +1,9 @@
 #include <pump_variables.h> // 펌프 작동 관련 변수 
 
-/// @brief 설정한 주기 (interval)에 맞춰 펌프를 설정한 시간 (pump_duration)동안 동작시키는 함수. main loop()에서 항상 호출되어야한다.
+// 펌프 제어에 문제가 발생하면 digitalWrite(pump_pin, HIGH) 대신 analogWrite(pump_pin, 255)를 사용 
+    
+
+/// @brief 설정한 주기 (interval)에 맞춰 펌프를 설정한 시간 (pump_duration)동안 동작시키는 함수
 void check_for_pump() { 
     
     current = millis();
