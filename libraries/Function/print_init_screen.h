@@ -26,17 +26,6 @@ void print_init() {
 	lcd.print(" %");
 }
 
-// 설정한 주기에 따라서 센서에서 값을 읽고 변수에 저장만 하는 함수, 출력은 print_init()을 사용하여 화면에 출력한다.
-void read_DHT() {
-	DHT_current = millis();
-
-	if (DHT_current - DHT_previous > read_interval) { // read_interval 주기로 센서 값 업데이트  
-		
-		DHT_previous = DHT_current;
-		temperature = dht.readTemperature();
-		humidity = dht.readHumidity();
-	}
-}
 
 // 온습도 값을 즉시 읽고 화면에 출력하는 함수.
 void read_DHT_immediate() {
