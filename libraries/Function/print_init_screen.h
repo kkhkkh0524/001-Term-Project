@@ -13,7 +13,7 @@ Humidity : 34 %
 DHT dht(DHT_11_pin, DHT11); // 온습도 센서 객체 정의
 LiquidCrystal_I2C lcd(0x27, 16, 2); // LCD 객체 정의 
 
-// 온도와 습도를 저장된 변수 (int temperature, humidity) 에서 불러와 LCD에 표시하는 함수
+/// @brief 온도와 습도를 저장된 변수 (int temperature, humidity) 에서 불러와 LCD에 표시하는 함수
 void print_init() {
 	lcd.setCursor(0, 0); // setCursor(a, b) : 출력문자의 시작점을 a열 b행으로 설정
 	lcd.print("Temp : ");
@@ -27,7 +27,7 @@ void print_init() {
 }
 
 
-// 온습도 값을 즉시 읽고 화면에 출력하는 함수.
+/// @brief 온습도 값을 즉시 읽고 화면에 출력하는 함수.
 void read_DHT_immediate() {
 	temperature = dht.readTemperature();
 	humidity = dht.readHumidity();
