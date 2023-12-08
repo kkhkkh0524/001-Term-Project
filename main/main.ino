@@ -18,7 +18,7 @@ void setup() {
   pinMode(pump_pin, OUTPUT); // 펌프를 제어할 MOSFET
 	pinMode(LED_pin, OUTPUT);  // 물 보충 알림에 필요한 LED
 	
-  // LCD 초기화
+  // LCD 초기화 (글자가 보이지 않으면 뒷면의 나사를 조절하여 보이도록 조정) 
   lcd.init();
   lcd.backlight();
 }
