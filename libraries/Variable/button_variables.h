@@ -1,5 +1,5 @@
 // index 순서대로 1, 2, 3, 4번 버튼으로 사용한다.
-const int buttons[] = {27, 29, 31, 33};
+const int buttons[] = {3, 4, 5, 6};
 
 // 각 index에 해당하는 버튼들의 현재 상태를 저장한다.
 int current_state[] = {HIGH, HIGH, HIGH, HIGH};

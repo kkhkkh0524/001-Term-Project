@@ -1,1 +1,2 @@
-I2C LCD 작동을 위한 라이브러리
+# LiquidCrystal_I2C
+LiquidCrystal Arduino library for the DFRobot I2C LCD displays

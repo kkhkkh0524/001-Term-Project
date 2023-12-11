@@ -29,6 +29,8 @@ void check_for_save() {
     // 급수량 설정 모드에서 저장 버튼이 놀리면 임시값에 저장된 값을 실제값으로 바꾸고, 급수주기 설정 모드로 들어간다.    
     if (is_amount_setting) {
       watering_amount = temp_for_amount;
+      pump_duration = (watering_amount * 36.1) + pass_time;
+
       is_amount_setting = false;
       is_cycle_setting = true;
     }
@@ -36,8 +38,12 @@ void check_for_save() {
     // 급수주기 설정 모드에서 저장 버튼이 눌리면 임시값에 저장된 값을 실제값으로 바꾸고, 설정 모드를 종료한다. 
     else if (is_cycle_setting) {
       watering_cycle = temp_for_cycle;
+      interval = (watering_cycle * 3600 * 1000);
+
       is_cycle_setting = false;
       is_setting = false;
+
+      lcd.init();
     }
 
     previous_state[3] = current_state[3];

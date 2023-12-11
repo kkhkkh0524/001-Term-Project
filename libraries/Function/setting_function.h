@@ -10,14 +10,17 @@ void setting_for_cycle() {
 
     // 버튼이 눌러진 경우
     if (current_state[i] == LOW && previous_state[i] == HIGH) { 
-      
+
+      // Serial.println("Chekced Function");
+
       // 2번 버튼 (값 증가)
       if (i == 1) temp_for_cycle += 1;
       
       // 3번 버튼 (값 감소), 0보다 작거나 같은 값은 가질 수 없다.
       else if (i == 2 && (temp_for_cycle - 1) >= 1) temp_for_cycle -= 1; 
-      
-      print_setting(); // 변경된 값을 화면에 업데이트 
+    
+
+      print_setting();
       
       previous_state[i] = current_state[i];
       delay(30);
@@ -45,7 +48,8 @@ void setting_for_amount() {
       // 3번 버튼 (값 감소), 음수 값은 가질 수 없다.  
       else if (i == 2 && (temp_for_amount - 20) >= 0) temp_for_amount -= 20; 
 
-      print_setting(); // 변경된 값을 화면에 업데이트 
+      // lcd.init();
+      print_setting();
 
       previous_state[i] = current_state[i];
       delay(30);
